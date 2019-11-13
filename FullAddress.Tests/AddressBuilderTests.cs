@@ -229,5 +229,31 @@ namespace FullAddress.Tests
 
             Assert.AreEqual("", fullAddress);
         }
+
+        [TestMethod]
+        public void Build_Full_Address_Handle_Duplicate_Address_Details()
+        {
+            var address = new Address()
+            {
+                AddressLine1 = "Carpenterstown",
+                AddressLine2 = "Country Avenue",
+                AddressLine3 = "Town",
+                AddressLine4 = "County",
+                AddressLine5 = "Country",
+                AddressLine6 = "EIRCODE",
+                AddressLine7 = "POSTCODE",
+                Town = "Town",
+                County = "County",
+                Country = "Country",
+                Eircode = "EIRCODE",
+                Postcode = "POSTCODE"
+            };
+
+            string fullAddress = FullAddressBuilder.ToFullAddressString(address);
+
+            Assert.AreEqual("Carpenterstown, Country Avenue, Town, County, Country, EIRCODE, POSTCODE", fullAddress);
+        }
     }
 }
+
+// Order:       Town, County, Country, Eircode, or Postcode
