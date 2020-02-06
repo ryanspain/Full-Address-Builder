@@ -68,7 +68,7 @@ namespace FullAddress.Core
         public static string ToTitleCase(this string input)
         {
             // Split the address line into sections to title case individually
-            string[] inputSections = input.Split(" ");
+            string[] inputSections = input.Split(Convert.ToChar(" "));
 
             for (int i = 0; i < inputSections.Length; i++)
             {
